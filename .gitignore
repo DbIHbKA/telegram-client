@@ -18,3 +18,9 @@ cabal.sandbox.config
 *.aux
 *.hp
 
+### Stack ###
+.stack-work/
+
+
+### Config ###
+bot.config
