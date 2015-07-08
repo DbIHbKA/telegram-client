@@ -13,10 +13,28 @@ build-type:          Simple
 -- extra-source-files:  
 cabal-version:       >=1.10
 
+
 library
   hs-source-dirs:      src
-  exposed-modules:     Lib
-  build-depends:       base >= 4.7 && < 5
+  exposed-modules:     TelegramBotAPI
+  default-extensions:  OverloadedStrings
+                     , DataKinds
+  build-depends:       aeson >= 0.8.0.2
+                     , base >= 4.7 && < 5
+                     , bytestring >= 0.10.4.0
+                     , configurator >= 0.3.0.0
+                     , http-client
+                     , http-client-tls
+                     , http-types >= 0.8.6
+                     , text >= 1.2.0.6
+                     , transformers >= 0.3.0.0
+                     , record-preprocessor == 0.1.*
+                     , record == 0.4.*
+                     , basic-lens == 0.0.*
+                     , unordered-containers == 0.2.5.1
+                     , utf8-string
+  ghc-options:         -F -pgmF record-preprocessor
+
   default-language:    Haskell2010
 
 
@@ -24,9 +42,18 @@ test-suite telegram-client-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
+  default-extensions:  OverloadedStrings
+                     , DataKinds
   build-depends:       base
-                     , new-template
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+                     , basic-lens
+                     , text == 1.2.0.6
+                     , record-preprocessor == 0.1.*
+                     , record == 0.4.*
+                     , configurator == 0.3.0.0
+                     , transformers == 0.3.0.0
+                     , telegram-client
+
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -F -pgmF record-preprocessor
   default-language:    Haskell2010
 
 source-repository head
